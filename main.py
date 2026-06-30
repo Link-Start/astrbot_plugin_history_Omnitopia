@@ -65,7 +65,8 @@ class Main(Star):
                 from .web_server import WebServer
 
                 port = self.config.get("webui_port", 8866)
-                self.web_server = WebServer(self, port=port)
+                password = self.config.get("webui_password", "")
+                self.web_server = WebServer(self, port=port, password=password)
                 await self.web_server.start()
             except Exception as e:
                 logger.error(f"❌ WebUI 启动失败: {e}", exc_info=True)
